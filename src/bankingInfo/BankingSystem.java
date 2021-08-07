@@ -23,7 +23,7 @@ public class BankingSystem {
         DBUtil.insertRowsInAccountTable(accounts);
         //Collections.copy(account,accounts);
     }
-    public void setCustomerHashMap()throws SQLException
+    public  void setCustomerHashMap()throws SQLException
     {
         ArrayList<Customer> customers=DBUtil.getCustomersListFromCustomerTable();
         for (Customer customer:customers)
@@ -45,5 +45,18 @@ public class BankingSystem {
             accountInfoHashMap.put(account.getCustomer_id(), accountHashMap);
         }
         //accounts.clear();
+    }
+    public void handleNewCustomer() throws  SQLException
+    {
+        ArrayList<Customer> customers= bankingManagementSystem.getCustomersInfo();
+        DBUtil.insertRowsInCustomerTable(customers);
+        setCustomerHashMap();
+        ArrayList<Account> accounts=bankingManagementSystem.getAccountsInfo();
+        DBUtil.insertRowsInAccountTable(accounts);
+        setAccountHashMap();
+    }
+
+    public HashMap<Long, Account> getAccountsInfoFromAccountsInfoHashMap(long id) {
+        return accountInfoHashMap.get(id);
     }
 }

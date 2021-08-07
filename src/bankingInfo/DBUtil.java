@@ -84,7 +84,7 @@ public class DBUtil {
         return  accounts;
     }
 
-    public void closeConnection(){
+    public static void closeConnection(){
         if (connection!=null)
         {
             try {
